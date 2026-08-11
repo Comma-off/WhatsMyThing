@@ -252,11 +252,11 @@ a {
   width: 48px;
   height: 48px;
   border-radius: var(--shape-full);
-  border: none;
+  border: 1.5px solid var(--md-outline-variant);
   background: transparent;
   color: var(--md-on-surface-variant);
   cursor: pointer;
-  transition: background-color 0.2s var(--motion-standard), transform 0.2s var(--motion-spring);
+  transition: background-color 0.2s var(--motion-standard), transform 0.2s var(--motion-spring), border-color 0.2s var(--motion-standard);
   position: relative;
 }
 
@@ -282,6 +282,21 @@ a {
 .icon-sun {
   opacity: 1;
   transform: rotate(0) scale(1);
+}
+
+/* Follow the system preference when the visitor hasn't explicitly picked a
+   theme yet, same as the color tokens above - otherwise a device already in
+   dark mode would render dark colors but still show the sun icon. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .icon-sun {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+  }
+
+  :root:not([data-theme="light"]) .icon-moon {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
 }
 
 :root[data-theme="dark"] .icon-sun {
