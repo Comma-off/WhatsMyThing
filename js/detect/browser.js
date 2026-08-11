@@ -19,7 +19,7 @@ export async function detectBrowser() {
   const ua = navigator.userAgent || "";
   const uaData = navigator.userAgentData;
 
-  items.push(detected("User-Agent string", ua || "—"));
+  items.push(detected("User-Agent string", ua || "-"));
 
   if (uaData) {
     let highEntropy = null;
@@ -63,7 +63,7 @@ export async function detectBrowser() {
         "UA Client Hints brands",
         (uaData.brands || [])
           .map((b) => `${b.brand} ${b.version}`)
-          .join(", ") || "—"
+          .join(", ") || "-"
       )
     );
     items.push(detected("Mobile (UA-CH)", uaData.mobile ? "Yes" : "No"));

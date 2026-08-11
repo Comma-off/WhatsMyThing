@@ -1,6 +1,6 @@
 // A small, evidence-based table of User-Agent substrings that reveal a page
 // is running inside a specific runtime or host application rather than a
-// standalone user-facing browser — e.g. VS Code's built-in browser reports
+// standalone user-facing browser - e.g. VS Code's built-in browser reports
 // itself as Chromium *and* appends its own "Code/x.x.x" and "Electron/x.x.x"
 // tokens. Each entry only fires on a literal, documented token, so a browser
 // that doesn't carry the token simply won't match (no guessing involved).
@@ -29,7 +29,7 @@ export const RUNTIME_SIGNATURES = [
     test: /HeadlessChrome\/([\d.]+)/,
     label: "Headless Chrome",
     role: "runtime",
-    note: "A headless/automated browser — likely a bot, test runner, or scraper rather than an interactive session.",
+    note: "A headless/automated browser - likely a bot, test runner, or scraper rather than an interactive session.",
   },
   {
     id: "android-webview",

@@ -103,7 +103,7 @@ async function main() {
       await navigator.clipboard.writeText(report);
       showSnackbar("Report copied to clipboard");
     } catch {
-      showSnackbar("Couldn't access clipboard — copy manually from the console");
+      showSnackbar("Couldn't access clipboard - copy manually from the console");
       console.log(report);
     }
   });

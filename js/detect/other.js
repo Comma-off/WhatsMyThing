@@ -3,11 +3,11 @@ import { detected, unavailable } from "../status.js";
 export function detectOther() {
   const items = [];
 
-  items.push(detected("Language", navigator.language || "—"));
+  items.push(detected("Language", navigator.language || "-"));
   items.push(
     detected(
       "Preferred languages",
-      (navigator.languages && navigator.languages.join(", ")) || navigator.language || "—"
+      (navigator.languages && navigator.languages.join(", ")) || navigator.language || "-"
     )
   );
 

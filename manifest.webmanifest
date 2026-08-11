@@ -1,0 +1,14 @@
+{
+  "name": "WhatsMyThing",
+  "short_name": "WhatsMyThing",
+  "description": "A local read-out of what your browser, device, and network expose - detected on-device, no backend required.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7fbf1",
+  "theme_color": "#3b6939",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

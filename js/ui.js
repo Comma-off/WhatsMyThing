@@ -177,7 +177,7 @@ export function showSnackbar(message) {
 }
 
 export function buildTextReport(sections) {
-  const lines = [`WhatsMyThing — environment report`, `Generated ${new Date().toString()}`, ""];
+  const lines = [`WhatsMyThing - environment report`, `Generated ${new Date().toString()}`, ""];
   for (const section of sections) {
     lines.push(`## ${section.title}`);
     for (const item of section.items) {

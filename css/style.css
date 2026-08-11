@@ -1,11 +1,11 @@
 /* ==========================================================================
-   WhatsMyThing — Material Design 3 (Expressive) theme
-   Seed color: green (Kolor Builder / SPEC_2025 tonal palette — kept in sync
+   WhatsMyThing - Material Design 3 (Expressive) theme
+   Seed color: green (Kolor Builder / SPEC_2025 tonal palette - kept in sync
    with the same green scheme used on comma-off.github.io)
    ========================================================================== */
 
 /* Self-hosted (Latin subset only, ~50KB) so the font loads from this same
-   origin — no third-party request, consistent with the "no external
+   origin - no third-party request, consistent with the "no external
    requests except the IP lookup" rule. Sourced from Google Fonts (OFL). */
 @font-face {
   font-family: "Google Sans Flex";
@@ -158,6 +158,12 @@
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 html,
@@ -175,6 +181,10 @@ body {
   overflow-x: hidden;
 }
 
+button {
+  touch-action: manipulation;
+}
+
 a {
   color: var(--md-primary);
 }
@@ -185,7 +195,7 @@ a {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 20px clamp(16px, 4vw, 40px);
+  padding: calc(20px + env(safe-area-inset-top)) clamp(16px, 4vw, 40px) 20px;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -239,8 +249,8 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   border-radius: var(--shape-full);
   border: none;
   background: transparent;
@@ -288,7 +298,7 @@ a {
 .content {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 32px clamp(16px, 4vw, 40px) 64px;
+  padding: 32px clamp(16px, 4vw, 40px) calc(64px + env(safe-area-inset-bottom));
 }
 
 .hero {
@@ -373,7 +383,7 @@ a {
 /* ---- Card grid ---- */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
   gap: 24px;
 }
 
@@ -620,7 +630,7 @@ a {
 .snackbar {
   position: fixed;
   left: 50%;
-  bottom: 28px;
+  bottom: calc(28px + env(safe-area-inset-bottom));
   transform: translate(-50%, 24px);
   background: var(--md-on-surface);
   color: var(--md-surface);
@@ -662,5 +672,43 @@ a {
 @media (max-width: 600px) {
   .top-bar__subtitle {
     display: none;
+  }
+
+  .top-bar {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .hero {
+    width: 100%;
+  }
+
+  .filled-tonal-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .card-grid {
+    gap: 16px;
+  }
+
+  .section-card {
+    padding: 18px;
+    border-radius: var(--shape-md);
+  }
+
+  .data-row {
+    gap: 10px;
+    padding: 10px 12px;
+  }
+
+  .data-row__avatar {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+  }
+
+  .status-badge {
+    padding: 3px 8px;
   }
 }

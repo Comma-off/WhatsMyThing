@@ -101,7 +101,7 @@ export function detectHardware() {
   if (touchPoints > 0) {
     items.push({
       ...detected("Max touch points", String(touchPoints)),
-      note: "Reflects the display/input hardware the browser can see — not necessarily that the device is being used with touch right now.",
+      note: "Reflects the display/input hardware the browser can see - not necessarily that the device is being used with touch right now.",
     });
   }
 

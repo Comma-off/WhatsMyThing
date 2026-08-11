@@ -40,9 +40,10 @@ export async function detectOS() {
   const ua = navigator.userAgent || "";
   const uaData = navigator.userAgentData;
   const uaParsed = parseUAForOS(ua);
+  let highEntropy = null;
+  let platform = null;
 
   if (uaData) {
-    let highEntropy = null;
     try {
       highEntropy = await uaData.getHighEntropyValues([
         "platform",
@@ -55,7 +56,7 @@ export async function detectOS() {
       highEntropy = null;
     }
 
-    const platform = highEntropy?.platform || uaData.platform;
+    platform = highEntropy?.platform || uaData.platform;
     items.push(platform ? detected("Platform", platform) : unavailable("Platform"));
 
     if (platform === "Windows" && highEntropy?.platformVersion) {
@@ -108,13 +109,31 @@ export async function detectOS() {
     items.push(unavailable("Linux distribution", "Not included in this browser's User-Agent string."));
   }
 
-  // Kernel: the browser never exposes a kernel version. The literal "Linux"
-  // token in the UA string does reliably name the kernel family (it's a
-  // direct read, not an inference) on desktop Linux, so that much is a
-  // genuine Detected fact — but the version is never available, full stop.
-  if (/Linux/.test(ua) && !/Android/.test(ua)) {
+  // Kernel: the literal "Linux" token in the UA string reliably names the
+  // kernel family on desktop Linux (a direct read, not an inference). The
+  // *version* is a different story: Chromium's Sec-CH-UA-Platform-Version
+  // hint used to return the real kernel version string on Linux, until this
+  // was patched to return an empty string (landed ~April 2025, see
+  // https://github.com/web-platform-tests/wpt/pull/52191) specifically
+  // because it had "no legitimate use on the web ... only for fingerprinting".
+  // Up-to-date Chromium browsers will report Unavailable here; an older or
+  // embedded Chromium build (e.g. some Electron apps) that predates the
+  // patch may still hand it over, in which case it's shown as a genuine
+  // Detected value, not a guess.
+  const isLinuxDesktop = uaData
+    ? platform === "Linux"
+    : /Linux/.test(ua) && !/Android/.test(ua);
+
+  if (isLinuxDesktop) {
     items.push(detected("Kernel family", "Linux"));
-    items.push(unavailable("Kernel version", "Not exposed by the browser."));
+    if (highEntropy?.platformVersion) {
+      items.push({
+        ...detected("Kernel version", highEntropy.platformVersion),
+        note: "Exposed via UA Client Hints. Most current Chromium browsers block this since April 2025 - seeing a real value here usually means an older or embedded Chromium build.",
+      });
+    } else {
+      items.push(unavailable("Kernel version", "Not exposed by this browser."));
+    }
   } else {
     items.push(unavailable("Kernel", "Not exposed by the browser."));
   }

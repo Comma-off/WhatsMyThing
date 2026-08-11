@@ -27,7 +27,7 @@ function classifyIP(ip) {
   return ip.includes(":") ? "IPv6" : "IPv4";
 }
 
-// Public IPs are sensitive — mask everything but the leading segment by
+// Public IPs are sensitive - mask everything but the leading segment by
 // default, and let the UI reveal the full value only on request.
 function maskIP(ip) {
   if (ip.includes(":")) {
@@ -53,7 +53,7 @@ export async function detectNetwork() {
       fullValue: v4,
       sensitive: true,
       status: "detected",
-      note: "Looked up via api.ipify.org (the only external request this site makes). Masked by default — click Show to reveal.",
+      note: "Looked up via api.ipify.org (the only external request this site makes). Masked by default - click Show to reveal.",
     });
   } else {
     items.push(unavailable("Public IPv4 address", "No IPv4 route, or the lookup service could not be reached."));
@@ -66,7 +66,7 @@ export async function detectNetwork() {
       fullValue: v6,
       sensitive: true,
       status: "detected",
-      note: "Looked up via api6.ipify.org (the only external request this site makes). Masked by default — click Show to reveal.",
+      note: "Looked up via api6.ipify.org (the only external request this site makes). Masked by default - click Show to reveal.",
     });
   } else {
     items.push(unavailable("Public IPv6 address", "No IPv6 route from this network, or the lookup service could not be reached."));
@@ -86,7 +86,7 @@ export async function detectNetwork() {
         label: "Effective connection type",
         value: conn.effectiveType,
         status: "detected",
-        note: "Browser-estimated connection quality (based on recent latency/throughput) — not the actual network technology. A fast wired connection can still be classified as \"4g\".",
+        note: "Browser-estimated connection quality (based on recent latency/throughput) - not the actual network technology. A fast wired connection can still be classified as \"4g\".",
       });
     }
     if (typeof conn.saveData === "boolean") {
