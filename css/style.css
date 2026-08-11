@@ -252,16 +252,16 @@ a {
   width: 48px;
   height: 48px;
   border-radius: var(--shape-full);
-  border: 1.5px solid var(--md-outline-variant);
-  background: transparent;
+  border: none;
+  background: var(--md-surface-container);
   color: var(--md-on-surface-variant);
   cursor: pointer;
-  transition: background-color 0.2s var(--motion-standard), transform 0.2s var(--motion-spring), border-color 0.2s var(--motion-standard);
+  transition: background-color 0.2s var(--motion-standard), transform 0.2s var(--motion-spring);
   position: relative;
 }
 
 .icon-button:hover {
-  background: color-mix(in srgb, var(--md-on-surface) 8%, transparent);
+  background: var(--md-surface-container-high);
 }
 
 .icon-button:active {
@@ -271,17 +271,19 @@ a {
 .icon-sun,
 .icon-moon {
   position: absolute;
+  top: 50%;
+  left: 50%;
   transition: opacity 0.25s var(--motion-standard), transform 0.4s var(--motion-spring);
 }
 
 .icon-moon {
   opacity: 0;
-  transform: rotate(-90deg) scale(0.5);
+  transform: translate(-50%, -50%) rotate(-90deg) scale(0.5);
 }
 
 .icon-sun {
   opacity: 1;
-  transform: rotate(0) scale(1);
+  transform: translate(-50%, -50%) rotate(0) scale(1);
 }
 
 /* Follow the system preference when the visitor hasn't explicitly picked a
@@ -290,23 +292,23 @@ a {
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .icon-sun {
     opacity: 0;
-    transform: rotate(90deg) scale(0.5);
+    transform: translate(-50%, -50%) rotate(90deg) scale(0.5);
   }
 
   :root:not([data-theme="light"]) .icon-moon {
     opacity: 1;
-    transform: rotate(0) scale(1);
+    transform: translate(-50%, -50%) rotate(0) scale(1);
   }
 }
 
 :root[data-theme="dark"] .icon-sun {
   opacity: 0;
-  transform: rotate(90deg) scale(0.5);
+  transform: translate(-50%, -50%) rotate(90deg) scale(0.5);
 }
 
 :root[data-theme="dark"] .icon-moon {
   opacity: 1;
-  transform: rotate(0) scale(1);
+  transform: translate(-50%, -50%) rotate(0) scale(1);
 }
 
 /* ---- Content layout ---- */
