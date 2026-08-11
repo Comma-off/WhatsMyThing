@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WhatsMyThing</title>
+  <meta name="description" content="See what your browser, device, and network reveal about your environment — detected locally, no backend required." />
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+  <link rel="icon" type="image/svg+xml" media="(prefers-color-scheme: light)" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233b6939' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M9.1 9a3 3 0 0 1 5.82 1c0 2-3 3-3 3'/%3E%3Cline x1='12' y1='17' x2='12.01' y2='17'/%3E%3C/svg%3E" />
+  <link rel="icon" type="image/svg+xml" media="(prefers-color-scheme: dark)" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a1d398' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M9.1 9a3 3 0 0 1 5.82 1c0 2-3 3-3 3'/%3E%3Cline x1='12' y1='17' x2='12.01' y2='17'/%3E%3C/svg%3E" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%233b6939'/%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9.1 9a3 3 0 0 1 5.82 1c0 2-3 3-3 3'/%3E%3Cline x1='12' y1='17' x2='12.01' y2='17'/%3E%3C/g%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="scrim" id="scrim"></div>
+
+  <header class="top-bar">
+    <div class="top-bar__leading">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M9.1 9a3 3 0 0 1 5.82 1c0 2-3 3-3 3"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+      </span>
+      <div class="top-bar__title-group">
+        <h1 class="top-bar__title">WhatsMyThing</h1>
+        <p class="top-bar__subtitle">A local read-out of what your browser exposes</p>
+      </div>
+    </div>
+    <div class="top-bar__actions">
+      <button class="icon-button" id="theme-toggle" type="button" aria-label="Toggle color scheme">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <circle cx="12" cy="12" r="6"/>
+          <rect x="11" y="1" width="2" height="4" rx="1"/>
+          <rect x="11" y="1" width="2" height="4" rx="1" transform="rotate(45 12 12)"/>
+          <rect x="11" y="1" width="2" height="4" rx="1" transform="rotate(90 12 12)"/>
+          <rect x="11" y="1" width="2" height="4" rx="1" transform="rotate(135 12 12)"/>
+          <rect x="11" y="1" width="2" height="4" rx="1" transform="rotate(180 12 12)"/>
+          <rect x="11" y="1" width="2" height="4" rx="1" transform="rotate(225 12 12)"/>
+          <rect x="11" y="1" width="2" height="4" rx="1" transform="rotate(270 12 12)"/>
+          <rect x="11" y="1" width="2" height="4" rx="1" transform="rotate(315 12 12)"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M12.7 2c.4 0 .8 0 1.2.1a8.5 8.5 0 0 0 4.6 15.7 9.5 9.5 0 1 1-5.8-15.8"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="content">
+    <section class="hero" id="hero">
+      <div class="hero__badge-row" id="hero-summary" aria-live="polite">
+        <span class="skeleton-line"></span>
+      </div>
+      <button class="filled-tonal-button" id="copy-report" type="button">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12Zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m0 16H8V7h11Z"/></svg>
+        <span>Copy full report</span>
+      </button>
+    </section>
+
+    <div class="card-grid" id="card-grid">
+      <!-- Sections injected by js/app.js -->
+    </div>
+
+    <footer class="page-footer">
+      <p>Everything above is read directly from your browser on this device. Nothing is sent anywhere except an optional lookup of your public IP address. No data is stored or transmitted to any server operated by this site.</p>
+      <p class="page-footer__meta">Built with plain HTML, CSS &amp; JavaScript · No tracking · <a href="https://m3.material.io" target="_blank" rel="noopener noreferrer">Material Design 3</a> styling</p>
+    </footer>
+  </main>
+
+  <div class="snackbar" id="snackbar" role="status" aria-live="polite"></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
